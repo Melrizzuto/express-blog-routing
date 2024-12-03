@@ -22,18 +22,18 @@ router.post('/', function (req, res) {
 });
 
 // update (update or modify)
-router.put('/', function (req, res) {
+router.put('/:id', function (req, res) {
     const postId = req.params.id;
     res.send(`Aggiornamento del ${postId}`)
 })
 
-router.patch('/', function (req, res) {
+router.patch('/:id', function (req, res) {
     const postId = req.params.id;
     res.send(`Modifica del ${postId}`)
 })
 
 // destroy (delete)
-router.delete('/', function (req, res) {
+router.delete('/:id', function (req, res) {
     const postId = req.params.id;
     res.send(`Cancellazione del ${postId}`);
 });
