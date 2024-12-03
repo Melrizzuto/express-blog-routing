@@ -56,18 +56,18 @@ router.post('/', function (req, res) {
 // update (update or modify)
 router.put('/:id', function (req, res) {
     const postId = req.params.id;
-    res.send(`Aggiornamento del ${postId}`)
+    res.send(`Aggiornamento del post ${postId}`)
 })
 
 router.patch('/:id', function (req, res) {
     const postId = req.params.id;
-    res.send(`Modifica del ${postId}`)
+    res.send(`Modifica del post ${postId}`)
 })
 
 // destroy (delete)
 router.delete('/:id', function (req, res) {
     const postId = req.params.id;
-    res.send(`Cancellazione del ${postId}`);
+    res.send(`Cancellazione del post ${postId}`);
 });
 
 
