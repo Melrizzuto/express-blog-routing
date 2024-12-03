@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const posts = require('./posts');
+const posts = require('./data/posts');
 
 // Configuro gli asset statici
 app.use(express.static('public'));
@@ -31,14 +31,6 @@ app.get('/bacheca', (req, res) => {
         filteredPosts = filteredPosts.filter(post =>
             post.title.toLowerCase().includes(req.query.title.toLowerCase())
         );
-    }
-
-    if (filteredPosts.length > 1) {
-        res.status(404);
-        response = {
-            error: 404,
-            message: "Non ci sono elementi che rispecchiano la ricerca"
-        }
     }
 
     res.json({
