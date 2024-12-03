@@ -8,7 +8,7 @@ const posts = require('../data/posts');
 // invece di app, utilizziamo router per definire le rotte
 
 // index (read)
-router.get('/bacheca', (req, res) => {
+router.get('/', (req, res) => {
     let filteredPosts = [...posts];
 
     // Filtrare per tag
@@ -33,8 +33,14 @@ router.get('/bacheca', (req, res) => {
 
 // show (read)
 router.get('/:id', function (req, res) {
-    const postId = req.params.id;
-    res.send(`Dettagli del ${postId}`);
+    const postId = parseInt(req.params.id);
+    const post = posts.find(p => p.id == postId);
+
+    if (post) {
+        res.json(post);
+    } else {
+        res.status(404).json({ message: 'Post non trovato' });
+    }
 });
 
 // store (create)
