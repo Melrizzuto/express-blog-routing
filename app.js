@@ -4,6 +4,9 @@ const PORT = 3000;
 
 const posts = require('./data/posts');
 
+// Importo il router dei post
+const postsRouter = require('./routers/posts');
+
 // Configuro gli asset statici
 app.use(express.static('public'));
 
@@ -15,9 +18,6 @@ app.get('/', (req, res) => {
 // Rotta per la bacheca che restituisce i post come JSON
 app.get('/bacheca', (req, res) => {
     let filteredPosts = [...posts];
-
-
-    // uso due if se voglio utilizzare entrambi i parametri (quindi posso entrare in entrambe le condizioni)
 
     // Filtrare per tag
     if (req.query.tag) {
@@ -38,10 +38,14 @@ app.get('/bacheca', (req, res) => {
         count: filteredPosts.length
     });
 });
+
+// Usa il router dei post
+app.use('/posts', postsRouter);
+
 // rotta fallback   
 app.all('*', (req, res) => {
     res.status(404).send(`<h1>Error 404. Page not found</h1>`)
-})
+});
 
 // Avvio del server
 app.listen(PORT, () => {
