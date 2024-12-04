@@ -25,15 +25,12 @@ router.get('/', (req, res) => {
         );
     }
 
-    // controllo
-    if (filteredPosts.length > 0) {
-        res.json(filteredPosts);
-    } else {
-        res.status(404);
-        res.send("Error 404. Post non trovato")
-    }
-
+    res.json({
+        filteredPosts,
+        count: filteredPosts.length
+    });
 });
+
 
 // show (read)
 router.get('/:id', function (req, res) {
